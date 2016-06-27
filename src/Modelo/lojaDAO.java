@@ -46,9 +46,10 @@ public class lojaDAO {
 	public void inserir(loja lj){
 		try {
 			conn=conexaoMySQL.getConexaoMySQL();
-			pstm=conn.prepareStatement("INSERT INTO loja(nomeFilial, cidade)VALUES(? , ?)");
+			pstm=conn.prepareStatement("INSERT INTO loja(nomefilial, cidade, tel)VALUES(? , ?, ?)");
 			pstm.setString(1, lj.getNomeFilial());
 			pstm.setString(2, lj.getCidade());
+			pstm.setString(3, lj.getTel());
 			
 			pstm.executeUpdate();
 		} catch (Exception e) {

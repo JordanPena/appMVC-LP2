@@ -22,10 +22,10 @@ public class conexaoMySQL {
 			Class.forName(driverName);
 
 			String serverName = "localhost";    
-			String mydatabase = "Lojas";    
+			String mydatabase = "TrabMVC";    
 			String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 			String username = "root";           
-			String password = "JOR@dan12";    
+			String password = "";    
 
 			connection = DriverManager.getConnection(url, username, password);
 

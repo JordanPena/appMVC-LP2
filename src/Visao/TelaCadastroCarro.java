@@ -6,16 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controle.Cliente;
+import Modelo.veiculo;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroCarro extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfModelo;
+	private JTextField tfAno;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,10 +48,10 @@ public class TelaCadastroCarro extends JFrame {
 		comboBox.setBounds(90, 98, 32, 24);
 		contentPane.add(comboBox);
 		
-		textField = new JTextField();
-		textField.setBounds(94, 41, 114, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfModelo = new JTextField();
+		tfModelo.setBounds(94, 41, 114, 19);
+		contentPane.add(tfModelo);
+		tfModelo.setColumns(10);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setBounds(12, 41, 70, 15);
@@ -60,13 +66,28 @@ public class TelaCadastroCarro extends JFrame {
 		contentPane.add(lblAno);
 		
 		JButton btnOk = new JButton("OK!");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				veiculo carro = new veiculo();
+				carro.setModelo(tfModelo.getText());
+				carro.setAno(tfAno.getText());
+				//carro.setLoja();
+				Object tmp = carro;
+				
+				Cliente clienteCadastra = new Cliente(tmp);
+				Thread thClient = new Thread(clienteCadastra);
+				thClient.start();
+				
+			}
+		});
 		btnOk.setBounds(161, 263, 117, 25);
 		contentPane.add(btnOk);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(94, 170, 114, 19);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tfAno = new JTextField();
+		tfAno.setBounds(94, 170, 114, 19);
+		contentPane.add(tfAno);
+		tfAno.setColumns(10);
 	}
 
 }
