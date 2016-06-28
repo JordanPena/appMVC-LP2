@@ -25,7 +25,7 @@ public class conexaoMySQL {
 			String mydatabase = "TrabMVC";    
 			String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 			String username = "root";           
-			String password = "";    
+			String password = "JOR@dan12";    
 
 			connection = DriverManager.getConnection(url, username, password);
 

@@ -6,26 +6,21 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import Modelo.veiculo;
+import Modelo.veiculoDAO;
 
 public class controleVeiculo {
 	private veiculo carro = new veiculo();
+	private veiculoDAO carroDAO = new veiculoDAO();
 	
 
-	public void salvar(veiculo carro) {
-
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
+	public void salvarDAO(veiculo carro) {
 
 		this.carro.setModelo(carro.getModelo());
-		this.carro.setAno(carro.getAno());
 		this.carro.setLoja(carro.getLoja());
-
-		em.persist(this.carro);
-
-		etx.commit();
-
+		this.carro.setAno(carro.getAno());
+		carroDAO.inserir(this.carro);
+				
 	}
+	
 
 }

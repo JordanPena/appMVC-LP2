@@ -14,7 +14,7 @@ public class lojaDAO {
 	private ResultSet rs;
 
 	private final String SELECT=" SELECT * FROM loja";
-	private final String UPDATE=" UPDATE LOJA SET NOMEFILIAL=? WHERE ID=? ";
+	private final String UPDATE=" UPDATE loja SET NOMEFILIAL=?, CIDADE=?, TEL=? WHERE ID=? ";
 	private final String DELETE=" DELETE FROM LOJA WHERE ID=? ";
 
 	public List listarLojas(){
@@ -66,7 +66,8 @@ public class lojaDAO {
 			pstm=conn.prepareStatement(UPDATE);
 			pstm.setString(1, lj.getNomeFilial());
 			pstm.setString(2, lj.getCidade());
-
+			pstm.setString(3, lj.getTel());
+						
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			System.err.println("Ocorreu um erro, causa:"+e.getMessage());
@@ -76,11 +77,11 @@ public class lojaDAO {
 		}
 	}
 
-	public void excluir(int id){
+	public void excluir(loja lj){
 		try {
 			conn=conexaoMySQL.getConexaoMySQL();
 			pstm=conn.prepareStatement(DELETE);
-			pstm.setInt(1, id);
+			pstm.setLong(1, lj.getId());
 
 			pstm.executeUpdate();
 		} catch (Exception e) {

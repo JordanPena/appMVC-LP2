@@ -9,17 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "veiculos")
+
 public class veiculo implements Serializable{
 
 	private Long id;
 	private String Modelo = "";
 	private String Ano = "";
-	private loja loja;
+	private Class<? extends Object> loja;
 
-	@Id
-	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
@@ -27,13 +24,12 @@ public class veiculo implements Serializable{
 		this.id = id;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "loja")
-	public loja getLoja() {
-		return loja;
+	
+	public Class<? extends Object> getLoja() {
+		return this.loja;
 	}
-	public void setLoja(loja loja) {
-		this.loja = loja;
+	public void setLoja(Object object) {
+		this.loja = object.getClass();
 	}
 	
 	public String getModelo() {

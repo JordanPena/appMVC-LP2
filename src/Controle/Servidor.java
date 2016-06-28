@@ -39,7 +39,7 @@ public class Servidor implements Runnable{
 				System.out.println(varIn);
 				
 				if(varIn == "Modelo.loja"){
-					System.out.println("entei"+ this.lj);
+					System.out.println("entrei "+ this.lj);
 					this.lj = (loja) tmp;
 					controleLoja ctlj = new controleLoja();
 					ctlj.salvarDAO(this.lj);
@@ -49,7 +49,7 @@ public class Servidor implements Runnable{
 					
 					this.carro = (veiculo) tmp;
 					controleVeiculo ctlcarro = new controleVeiculo();
-					ctlcarro.salvar(this.carro);				
+					ctlcarro.salvarDAO(this.carro);				
 				}
 				
 			}

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controle.Cliente;
+import Controle.controleLoja;
+import Modelo.loja;
 import Modelo.veiculo;
 
 import javax.swing.JComboBox;
@@ -15,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class TelaCadastroCarro extends JFrame {
@@ -22,6 +25,7 @@ public class TelaCadastroCarro extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfModelo;
 	private JTextField tfAno;
+	private JComboBox comboBoxlj = new JComboBox();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,9 +48,10 @@ public class TelaCadastroCarro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(90, 98, 32, 24);
-		contentPane.add(comboBox);
+		
+		comboBoxlj.setBounds(90, 98, 122, 24);
+		contentPane.add(comboBoxlj);
+		this.preencheCbx();
 		
 		tfModelo = new JTextField();
 		tfModelo.setBounds(94, 41, 114, 19);
@@ -72,12 +77,13 @@ public class TelaCadastroCarro extends JFrame {
 				veiculo carro = new veiculo();
 				carro.setModelo(tfModelo.getText());
 				carro.setAno(tfAno.getText());
-				//carro.setLoja();
+				carro.setLoja(comboBoxlj.getSelectedItem());
 				Object tmp = carro;
 				
 				Cliente clienteCadastra = new Cliente(tmp);
 				Thread thClient = new Thread(clienteCadastra);
 				thClient.start();
+							
 				
 			}
 		});
@@ -88,6 +94,19 @@ public class TelaCadastroCarro extends JFrame {
 		tfAno.setBounds(94, 170, 114, 19);
 		contentPane.add(tfAno);
 		tfAno.setColumns(10);
+		
+
+
+	}
+	private void preencheCbx() {
+		controleLoja controlelj = new controleLoja();
+		int sizeList = controlelj.getLojas().size();
+		List<loja> listaCombo = controlelj.getLojas();
+
+		for(int i=1;i<sizeList;i++){			
+			loja exibelj = listaCombo.get(i);
+			comboBoxlj.addItem(exibelj.getNomeFilial());
+		}
 	}
 
 }

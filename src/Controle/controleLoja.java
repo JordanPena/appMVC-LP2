@@ -18,23 +18,6 @@ public class controleLoja {
 
 
 
-	public void salvar(loja lj) {
-		//utilizando hibernate
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-
-		this.lj.setNomeFilial(lj.getNomeFilial());
-		this.lj.setCidade(lj.getCidade());
-		this.lj.setTel(lj.getTel());
-
-		em.persist(this.lj);
-
-		etx.commit();
-
-	}
-	
 	public void salvarDAO(loja lj){
 		
 		this.lj.setNomeFilial(lj.getNomeFilial());
